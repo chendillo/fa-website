@@ -5,8 +5,8 @@ const initialState = new Map({
   count: 0
 })
 
-function counter(state: Map = initialState, { type, num }: Object): Map {
-  switch (action.type) {
+export default function counter(state: Map = initialState, { type, num }: Object): Map {
+  switch (type) {
     case Actions.COUNTER_ADD:
       return state.set('count', state.get('count') + 1)
     case Actions.COUNTER_RESET:

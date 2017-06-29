@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import { combineReducers } from 'redux'
+import { Provider } from 'react-redux'
 
 import Main from './Main.jsx'
-import * as reducers from './reducers'
-
-const allReducers = combineReducers(reducers)
+import store from './store'
 
 class Index extends Component {
     render() {
       return (
-        <Main />
+        <Provider store={store}>
+          <Main />
+        </Provider>
       )
     }
 }

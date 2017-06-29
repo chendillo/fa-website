@@ -5,7 +5,7 @@ const initialState = new Map({
   testText: ''
 })
 
-function testTexter(state: Map = initialState, { type, text }: Object): Map {
+export default function testTexter(state: Map = initialState, { type, text }: Object): Map {
   switch (type) {
     case Actions.TEST_1:
       return state.set('testText', text)
