@@ -1,0 +1,15 @@
+const COUNTER_ADD = 'COUNTER_ADD'
+const COUNTER_RESET = 'COUNTER_RESET'
+const COUNTER_SET = 'COUNTER_SET'
+const TEST_1 = 'TEST_1'
+const TEST_2 = 'TEST_2'
+const TEST_3 = 'TEST_3'
+
+export default {
+  COUNTER_ADD,
+  COUNTER_RESET,
+  COUNTER_SET,
+  TEST_1,
+  TEST_2,
+  TEST_3
+}
