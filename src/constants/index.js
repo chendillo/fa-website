@@ -1,7 +1,7 @@
-import Actions from './actions'
-import Test from './test'
+import actions from './actions'
+import test from './test'
 
 export {
-  Actions,
-  Test
+  actions,
+  test
 }

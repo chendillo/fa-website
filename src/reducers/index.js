@@ -1,7 +1,7 @@
-import Counter from './counter'
-import Test from './test'
+import counter from './counter'
+import test from './test'
 
 export {
-  Counter,
-  Test
+  counter,
+  test
 }
