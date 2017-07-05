@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { connect } from 'react-redux'
-import _ from 'lodash'
 import autobind from 'autobind-decorator'
 
 import { counter as counterActions } from '../../actions'
+import styles from './CounterWrapper.scss'
 
 @connect(
   ({ counter }) => ({ counter }),
@@ -18,10 +18,6 @@ import { counter as counterActions } from '../../actions'
 class CounterWrapper extends Component {
   constructor(props) {
     super(props)
-
-//    _.bindAll(this, ['addCounter', 'resetCounter', 
-//      'setCounter', '_inputRef']
-//    )
 
     this.state = {
       error: ''
