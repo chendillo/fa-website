@@ -1,16 +1,27 @@
 .counter-wrapper {
   display: flex;
+  flex-direction: column;
+  flex-basis: 20%;
 
   .counter-text {
-    display: block;
+    padding: 10px;
     font-size: 15px;
+    font-weight: bold;
   }
 
-  .input-counter {
+  .counter-input {
+    margin: 5px;
     display: block;
   }
 
   .button {
+    margin: 5px;
+    margin-left: 5px;
+  }
+
+  .error-message {
+    padding: 10px;
+    color: red;
     margin-left: 5px;
   }
 }

@@ -25,19 +25,21 @@ module.exports = {
       {
         test: /\.scss$/,
         use: extractSass.extract({
-          use: [{
-              loader: "style-loader" // creates style nodes from JS strings
-          }, {
+          fallback: 'style-loader',
+          use: [
+            {
               loader: "css-loader", // translates CSS into CommonJS
               options: {
                 sourceMap: true,
                 modules: true,
                 localIdentName: '[name]__[local]___[hash:base64:5]'
               }
-          }, {
+            },
+            {
               loader: "sass-loader", // compiles Sass to CSS
               options: { sourceMap: true }
-          }]
+            }
+          ]
         })
       },
       {

@@ -45,16 +45,17 @@ class CounterWrapper extends Component {
   }
 
   render() {
+    console.log(styles)
     return (
-      <div>
-        <span>
+      <div className={styles['counter-wrapper']} >
+        <span className={styles['counter-text']} >
           Counter: {this.props.counter.get('count')}
         </span>
-        <input ref={this._inputRef} />
-        <button onClick={this.addCounter}>Add</button>
-        <button onClick={this.resetCounter}>Reset</button>
-        <button onClick={this.setCounter}>Set</button>
-        <span>
+        <input className={styles['counter-input']} ref={this._inputRef} />
+        <button className={styles['button']} onClick={this.addCounter}>Add</button>
+        <button className={styles['button']} onClick={this.resetCounter}>Reset</button>
+        <button className={styles['button']} onClick={this.setCounter}>Set</button>
+        <span className={styles['error-message']}>
           {this.state.error}
         </span>
       </div>
