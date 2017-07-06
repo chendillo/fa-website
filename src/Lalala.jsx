@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 
-import { CounterWrapper } from './containers'
-
-class Main extends Component {
+class Lalala extends Component {
     render(): ReactElement {
       return (
         <div>
-          <h2>Hello World!</h2>
-          <CounterWrapper />
+          <h2>LALALALA!</h2>
         </div>
       )
     }
 }
 
-export default Main
+export default Lalala

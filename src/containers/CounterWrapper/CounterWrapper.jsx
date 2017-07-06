@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
+import PropTypes from 'prop-types'
 
 import { counter as counterActions } from '../../actions'
 import styles from './CounterWrapper.scss'
 
 @connect(
-  ({ counter }) => ({ counter }),
+  ({ counter }: Object): Object => ({ counter }),
   {
     add: counterActions.add,
     reset: counterActions.reset,
@@ -16,12 +17,15 @@ import styles from './CounterWrapper.scss'
 )
 @autobind
 class CounterWrapper extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
+  state = {
       error: ''
     }
+
+  static propTypes = {
+    add: PropTypes.func,
+    counter: PropTypes.object,
+    reset: PropTypes.func,
+    set: PropTypes.func
   }
 
   addCounter() {
@@ -44,25 +48,24 @@ class CounterWrapper extends Component {
     }
   }
 
-  render() {
-    console.log(styles)
+  render(): ReactElement {
     return (
-      <div className={styles['counter-wrapper']} >
-        <span className={styles['counter-text']} >
+      <div className={styles.counterWrapper} >
+        <span className={styles.counterText} >
           Counter: {this.props.counter.get('count')}
         </span>
-        <input className={styles['counter-input']} ref={this._inputRef} />
-        <button className={styles['button']} onClick={this.addCounter}>Add</button>
-        <button className={styles['button']} onClick={this.resetCounter}>Reset</button>
-        <button className={styles['button']} onClick={this.setCounter}>Set</button>
-        <span className={styles['error-message']}>
+        <input className={styles.counterInput} ref={this._inputRef} />
+        <button className={styles.button} onClick={this.addCounter}>Add</button>
+        <button className={styles.button} onClick={this.resetCounter}>Reset</button>
+        <button className={styles.button} onClick={this.setCounter}>Set</button>
+        <span className={styles.errorMessage}>
           {this.state.error}
         </span>
       </div>
     )
   }
 
-  _inputRef(e) {
+  _inputRef = (e) => {
     this.inputCounter = e
   }
 }

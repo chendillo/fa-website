@@ -56,5 +56,8 @@ module.exports = {
   plugins: [
     HTMLWebpackPluginConfig,
     extractSass
-  ]
+  ],
+  devServer: {
+    historyApiFallback: true
+  }
 };
