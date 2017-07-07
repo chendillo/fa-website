@@ -5,7 +5,7 @@ import autobind from 'autobind-decorator'
 import PropTypes from 'prop-types'
 
 import { counter as counterActions } from '../../actions'
-import styles from './CounterWrapper.scss'
+import styles from './CounterWrapper.styles.scss'
 
 @connect(
   ({ counter }: Object): Object => ({ counter }),

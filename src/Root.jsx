@@ -1,13 +1,16 @@
 import React from 'react'
-import { Router, Route, browserHistory } from 'react-router'
-import Main from './Main'
-import Lalala from './Lalala'
+import { BrowserRouter, Route, Switch, browserHistory } from 'react-router-dom'
+import Main from './Main.jsx'
+import Lalala from './Lalala.jsx'
+import HomePage from 'pages'
 
-function Root(props: Object): ReactElement {
+export default function Root(props: Object): ReactElement {
   return (
-    <Router history={browserHistory}>
-      <Route path="/" component={Main} />
-      <Route path="/lalala" component={Lalala} />
-    </Router>
+    <BrowserRouter history={browserHistory}>
+      <Switch>
+        <Route path="/" component={HomePage} />
+        <Route path="/lalala" component={Lalala} />
+      </Switch>
+    </BrowserRouter>
   )
 }
