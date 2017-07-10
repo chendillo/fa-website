@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
 import PropTypes from 'prop-types'
 
-import { counter as counterActions } from '../../actions'
-import styles from './CounterWrapper.styles.scss'
+import { counter as counterActions } from 'actions'
+import styles from './CounterWrapper.styles'
 
 @connect(
   ({ counter }: Object): Object => ({ counter }),

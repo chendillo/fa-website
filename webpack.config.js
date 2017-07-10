@@ -1,13 +1,13 @@
-const webpack = require('webpack');
-const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require('webpack')
+const path = require('path')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
-const APP_DIR = path.resolve(__dirname, 'src');
-const BUILD_DIR = path.resolve(__dirname, 'public');
+const APP_DIR = path.resolve(__dirname, 'src')
+const BUILD_DIR = path.resolve(__dirname, 'public')
 
-const host = process.env.HOST || 'localhost';
-const port = process.env.PORT || 3000;
+const host = process.env.HOST || 'localhost'
+const port = process.env.PORT || 3000
 const stats = {
   assets: true,
   children: false,
@@ -27,9 +27,13 @@ module.exports = function (env) {
   const nodeEnv = env && env.prod ? 'production' : 'development'
   const isProd = nodeEnv === 'production'
 
+  // Use hashed only on production
+  const outputFileName = isProd ? '[name]-[hash:8].js' : '[name].js'
+  const outputChunkName = isProd ? '[name]-[chunkhash:8].js' : '[name].js'
+
   const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
     template: APP_DIR + '/index.html',
-    //filename: 'index.html',
+    filename: 'index.html',
     inject: true,
     production: isProd,
     minify: isProd && {
@@ -49,7 +53,7 @@ module.exports = function (env) {
   let cssLoader
   // style sheets into a dedicated file for production
   const extractSass = new ExtractTextPlugin({
-      filename: "[name].[contenthash].css",
+      filename: "style-[contenthash:8].css",
   });
 
   if(isProd) {
@@ -102,9 +106,8 @@ module.exports = function (env) {
     context: APP_DIR,
     output: {
       path: BUILD_DIR,
-      publicPath: '/public',
-      filename: '[name]-[hash:8].js',
-      chunkFilename: '[name]-[chunkhash:8].js',
+      filename: outputFileName,
+      chunkFilename: outputChunkName,
     },
     module: {
       rules: [
@@ -126,16 +129,16 @@ module.exports = function (env) {
     },
     plugins: [
       HTMLWebpackPluginConfig,
-      extractSass,
+      extractSass,      
     ],
     stats: stats,
     devServer: {
-      contentBase: './src',
+      contentBase: '/',
       publicPath: '/',
       historyApiFallback: true,
       port: port,
       host: host,
-      hot: !isProd,
+      hot: false,
       compress: isProd,
       stats: stats,
     },

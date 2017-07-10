@@ -1,4 +1,4 @@
-import { actions } from '../constants'
+import { COUNTER_ADD, COUNTER_RESET, COUNTER_SET } from 'constants/actions'
 import { Map } from 'immutable'
 
 const initialState = new Map({
@@ -7,11 +7,11 @@ const initialState = new Map({
 
 export default function counter(state: Map = initialState, { type, num }: Object): Map {
   switch (type) {
-    case actions.COUNTER_ADD:
+    case COUNTER_ADD:
       return state.set('count', state.get('count') + 1)
-    case actions.COUNTER_RESET:
+    case COUNTER_RESET:
       return state.set('count', 0)
-    case actions.COUNTER_SET:
+    case COUNTER_SET:
       return state.set('count', num)
     default:
       return state

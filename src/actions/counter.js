@@ -1,13 +1,13 @@
-import { actions } from '../constants'
+import { COUNTER_ADD, COUNTER_RESET, COUNTER_SET } from 'constants/actions'
 
 export function add(): Object {
-  return { type: actions.COUNTER_ADD }
+  return { type: COUNTER_ADD }
 }
 
 export function reset(): Object {
-  return { type: actions.COUNTER_RESET}
+  return { type: COUNTER_RESET}
 }
 
 export function set(num: number): Object {
-  return { type: actions.COUNTER_SET, num }
+  return { type: COUNTER_SET, num }
 }
