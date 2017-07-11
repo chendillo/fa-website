@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
+import { Link } from 'react-router-dom'
 
 class Lalala extends Component {
     render(): ReactElement {
-      console.log(this.props.match)
       return (
         <div>
-          <h2>LALALALA!</h2>
+          <div>
+            <Link to='/' >Back</Link>
+          </div>
+          <h2>LALALALA! -- {this.props.match.params.id || '*'}</h2>
         </div>
       )
     }

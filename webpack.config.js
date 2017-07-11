@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin')
 
 const APP_DIR = path.resolve(__dirname, 'src')
 const BUILD_DIR = path.resolve(__dirname, 'public')
@@ -26,10 +27,11 @@ const stats = {
 module.exports = function (env) {
   const nodeEnv = env && env.prod ? 'production' : 'development'
   const isProd = nodeEnv === 'production'
+  const plugins = []
 
   // Use hashed only on production
   const outputFileName = isProd ? '[name]-[hash:8].js' : '[name].js'
-  const outputChunkName = isProd ? '[name]-[chunkhash:8].js' : '[name].js'
+  const outputChunkName = isProd ? '[name]-[chunkhash:8].js' : '[name].chunk.js'
 
   const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
     template: APP_DIR + '/index.html',
@@ -51,6 +53,8 @@ module.exports = function (env) {
   });
 
   let cssLoader
+  let UglifyJSWebpackPluginConfig
+
   // style sheets into a dedicated file for production
   const extractSass = new ExtractTextPlugin({
       filename: "style-[contenthash:8].css",
@@ -78,6 +82,24 @@ module.exports = function (env) {
         },
       ],
     })
+
+    plugins.push(
+      new UglifyJSWebpackPlugin({
+        compress: {
+          warnings: false,
+          screw_ie8: true,
+          conditionals: true,
+          unused: true,
+          comparisons: true,
+          sequences: true,
+          dead_code: true,
+          evaluate: true,
+          if_return: true,
+          join_vars: true,
+        }
+      })
+    )
+
   } else {
     cssLoader = [
       {
@@ -108,6 +130,7 @@ module.exports = function (env) {
       path: BUILD_DIR,
       filename: outputFileName,
       chunkFilename: outputChunkName,
+      publicPath: `http://${host}:${port}/`,
     },
     module: {
       rules: [
@@ -129,7 +152,8 @@ module.exports = function (env) {
     },
     plugins: [
       HTMLWebpackPluginConfig,
-      extractSass,      
+      extractSass,
+      ...plugins,
     ],
     stats: stats,
     devServer: {
