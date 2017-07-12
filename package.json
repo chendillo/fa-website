@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf public",
-    "start": "npm run build && cross-env NODE_ENV=production webpack --env.prod=true",
-    "start-dev": "webpack-dev-server --inline --history-api-fallback"
+    "clean": "rimraf public",
+    "build": "npm run clean && cross-env PORT=8080 HOST=localhost NODE_ENV=production webpack -p --env.prod=true --config webpack/prod.config.js",
+    "start": "npm run build && node server.js",
+    "start-dev": "webpack-dev-server --history-api-fallback --config webpack/dev.config.js"
   },
   "repository": {
     "type": "git",
@@ -54,6 +55,7 @@
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.5.0"
+    "webpack-dev-server": "^2.5.0",
+    "webpack-merge": "^4.1.0"
   }
 }

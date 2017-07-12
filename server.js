@@ -6,11 +6,11 @@ const app = express()
 
 app.use(compression())
 // serve our static stuff like index.css
-app.use(express.static(__dirname))
+app.use(express.static(path.resolve(__dirname, 'public')))
 
 // send all requests to index.jsx so browserHistory in React Router works
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/index.html'))
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })
 
 const PORT = process.env.PORT || 8080

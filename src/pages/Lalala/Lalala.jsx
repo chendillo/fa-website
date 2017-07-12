@@ -9,7 +9,7 @@ class Lalala extends Component {
           <div>
             <Link to='/' >Back</Link>
           </div>
-          <h2>LALALALA! -- {this.props.match.params.id || '*'}</h2>
+          <h2>LALALALA! -- {this.props.match.params.id * 5 || '*'}</h2>
         </div>
       )
     }
