@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 import { HomePage, Lalala } from 'pages'
 
-export default function Root(props: Object): ReactElement {
+export default function Root() {
   return (
     <Router history={browserHistory}>
       <Switch>

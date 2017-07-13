@@ -1,5 +1,5 @@
-import CounterWrapper from './CounterWrapper/CounterWrapper.jsx'
+import CounterWrapper from './CounterWrapper/CounterWrapper'
 
 export {
-  CounterWrapper
+  CounterWrapper,
 }

@@ -5,7 +5,7 @@ export function add(): Object {
 }
 
 export function reset(): Object {
-  return { type: COUNTER_RESET}
+  return { type: COUNTER_RESET }
 }
 
 export function set(num: number): Object {

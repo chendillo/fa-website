@@ -2,7 +2,7 @@ import { COUNTER_ADD, COUNTER_RESET, COUNTER_SET } from 'constants/actions'
 import { Map } from 'immutable'
 
 const initialState = new Map({
-  count: 0
+  count: 0,
 })
 
 export default function counter(state: Map = initialState, { type, num }: Object): Map {

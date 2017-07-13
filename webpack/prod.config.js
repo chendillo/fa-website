@@ -1,16 +1,14 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin')
 const commonConfig = require('./config.js')
 
-const { paths, common, stats, port, host } = commonConfig
+const { paths, common, port, host } = commonConfig
 
-module.exports = function (env) {
-  console.log('*********************************************')
-  console.log(env)
+module.exports = (env) => {
+  const nodeEnv = env && env.prod ? 'production' : 'development'
   const plugins = []
   const cssLoader = ExtractTextPlugin.extract({
     fallback: 'style-loader',
@@ -36,7 +34,7 @@ module.exports = function (env) {
 
   plugins.push(
     new HTMLWebpackPlugin({
-      template: paths.src + '/index.html',
+      template: `${paths.src}/index.html`,
       filename: 'index.html',
       inject: true,
       production: true,
@@ -65,14 +63,19 @@ module.exports = function (env) {
         evaluate: true,
         if_return: true,
         join_vars: true,
-      }
+      },
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(nodeEnv),
+      },
     }),
   )
 
   return merge(common,
     {
       output: {
-        path: paths.public,
+        path: paths.build,
         filename: '[name]-[hash:8].js',
         chunkFilename: '[name]-[chunkhash:8].js',
         publicPath: `http://${host}:${port}/`,
@@ -92,6 +95,6 @@ module.exports = function (env) {
         ],
       },
       plugins,
-    }
+    },
   )
 }

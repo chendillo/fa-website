@@ -1,0 +1,56 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb-base"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "semi": ["warn", "never"],
+    "class-methods-use-this": [
+      2,
+      {
+        "exceptMethods": [
+          "componentDidMount",
+          "componentDidUpdate",
+          "componentWillMount",
+          "componentWillReceiveProps",
+          "componentWillUnmount",
+          "componentWillUpdate",
+          "render",
+          "shouldComponentUpdate",
+        ]
+      }
+    ],
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allowAfterThis": true
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      1,
+      "always",
+      {
+        "js": "never",
+        "jsx": "never",
+        "sass": "never",
+        "scss": "never"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack/dev.config.js"
+      }
+    },
+  },
+  "globals": {
+    "document": true
+  }
+}

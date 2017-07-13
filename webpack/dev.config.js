@@ -1,18 +1,17 @@
-const webpack = require('webpack')
 const merge = require('webpack-merge')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const commonConfig = require('./config.js')
 
 const { paths, common, stats, port, host } = commonConfig
 
-module.exports = function () {
+module.exports = () => {
   const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
-    template: paths.src + '/index.html',
+    template: `${paths.src}/index.html`,
     filename: 'index.html',
     inject: true,
     production: false,
-    minify: false
-  });
+    minify: false,
+  })
 
   const cssLoader = [
     {
@@ -38,7 +37,7 @@ module.exports = function () {
   return merge(common,
     {
       output: {
-        path: paths.public,
+        path: paths.build,
         filename: '[name].js',
         chunkFilename: '[name].chunk.js',
         publicPath: `http://${host}:${port}/`,
@@ -64,12 +63,12 @@ module.exports = function () {
         contentBase: '/',
         publicPath: '/',
         historyApiFallback: true,
-        port: port,
-        host: host,
+        port,
+        host,
         hot: false,
         compress: false,
-        stats: stats,
+        stats,
       },
-    }
+    },
   )
 }

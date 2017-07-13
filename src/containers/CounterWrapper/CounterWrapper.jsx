@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { render } from 'react-dom'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
 import PropTypes from 'prop-types'
@@ -12,20 +11,20 @@ import styles from './CounterWrapper.styles'
   {
     add: counterActions.add,
     reset: counterActions.reset,
-    set: counterActions.set
-  }
+    set: counterActions.set,
+  },
 )
 @autobind
 class CounterWrapper extends Component {
   state = {
-      error: ''
-    }
+    error: '',
+  }
 
   static propTypes = {
     add: PropTypes.func,
     counter: PropTypes.object,
     reset: PropTypes.func,
-    set: PropTypes.func
+    set: PropTypes.func,
   }
 
   addCounter() {
@@ -39,16 +38,16 @@ class CounterWrapper extends Component {
   }
 
   setCounter() {
-    const num = parseInt(this.inputCounter.value)
+    const num = parseInt(this.inputCounter.value, 10)
 
-    if(isNaN(num)) {
+    if (isNaN(num)) {
       this.setState({ error: 'Invalid number' })
     } else {
       this.props.set(num)
     }
   }
 
-  render(): ReactElement {
+  render() {
     return (
       <div className={styles.counterWrapper} >
         <span className={styles.counterText} >
